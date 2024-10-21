@@ -1,9 +1,9 @@
 import string
 import streamlit as st
-import ntlk
+#import nltk
 
-nltk.download('words')
-dictionary_words = set(nltk.corpus.words.words())
+#nltk.download('words')
+#dictionary_words = set(nltk.corpus.words.words())     Streamlit doesn't support ntlk, will change soon
 
 ascii_chars = [
     ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',',
@@ -15,7 +15,6 @@ ascii_chars = [
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '{', '|', '}', '~'
 ]
-
 
 def decipher(cipher, key):
     chars = []
@@ -34,7 +33,6 @@ def decipher(cipher, key):
     return (key, cleartext)
 
 def keygen(i, j):
-    
     char1 = ascii_chars[i]
     char2 = ascii_chars[j]   
     key = char1 + char2
@@ -44,7 +42,7 @@ def keygen(i, j):
 def main():
     st.title("XOR Bruteforce-r")
 
-    desc = st.text_area("Hello! Enter a ciphertext in binary and I'll try to bruteforce it using two-character keys from ASCII.")
+    desc = st.write("Hello! Enter a ciphertext in binary and I'll try to bruteforce it using two-character keys from ASCII.")
     cipher = st.text_input("Enter ciphertext (in binary): ")
 
     if st.button("Bruteforce"):
@@ -52,7 +50,7 @@ def main():
             for j in range(0, len(ascii_chars)):
                 key = keygen(i,j)
                 result = decipher(cipher, key)
-                if result[1] in dictionary_words:
-                    st.write(f"The plaintext is", result[1], "and the key is", result[0])
+                if result[1] in dictionary_words: #Error line
+                    st.wrtie(f"The plaintext is", result[1], "and the key is", result[0])
 
 main()
