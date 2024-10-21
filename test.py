@@ -1,6 +1,9 @@
 import string
 import streamlit as st
+import ntlk
 
+nltk.download('words')
+dictionary_words = set(nltk.corpus.words.words())
 
 ascii_chars = [
     ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',',
@@ -49,7 +52,7 @@ def main():
             for j in range(0, len(ascii_chars)):
                 key = keygen(i,j)
                 result = decipher(cipher, key)
-                
-                st.write(f"The plaintext is", result[1], "and the key is", result[0])
+                if result[1] in dictionary_words:
+                    st.write(f"The plaintext is", result[1], "and the key is", result[0])
 
 main()
