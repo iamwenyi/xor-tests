@@ -1,6 +1,7 @@
 import string
 import streamlit as st
 
+
 ascii_chars = [
     ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',',
     '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -48,7 +49,7 @@ def main():
             for j in range(0, len(ascii_chars)):
                 key = keygen(i,j)
                 result = decipher(cipher, key)
-                if result[1] in dictionary_words:
-                    st.write(f"The plaintext is", result[1], "and the key is", result[0])
+                
+                st.write(f"The plaintext is", result[1], "and the key is", result[0])
 
 main()
